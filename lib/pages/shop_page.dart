@@ -15,7 +15,17 @@ class _ShopPageState extends State<ShopPage> {
 
   // add coffee to cart
   void addToCart(Coffee coffee){
+
+    //add to cart
     Provider.of<CoffeeShop>(context, listen: false).addItemToCart(coffee);
+
+    //let user know it add been successfully added
+    showDialog(
+      context: context, 
+      builder: (context)=>AlertDialog(
+        title: Text("Producto agregado al carrito :D")
+      ),
+    );
   }
   
   
@@ -28,7 +38,7 @@ class _ShopPageState extends State<ShopPage> {
           children: [
             //heading message
             const Text(
-              "How would you like your coffee??",
+              "¿Cómo te gustaría tu cafesito??",
               style: TextStyle(fontSize: 20),
             ),
 
@@ -45,7 +55,7 @@ class _ShopPageState extends State<ShopPage> {
                   //return the tile for this coffee
                   return CoffeeTile(
                     coffee: eachCoffee,
-                    icon: Icon(Icons.delete),
+                    icon: Icon(Icons.add),
                     onPressed: ()=> addToCart(eachCoffee),
                     );
                 }),

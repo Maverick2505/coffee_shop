@@ -1,3 +1,4 @@
+import 'package:coffee_shop/components/coffee_tile.dart';
 import 'package:coffee_shop/models/coffee.dart';
 import 'package:coffee_shop/models/coffee_shop.dart';
 import 'package:flutter/material.dart';
@@ -11,24 +12,61 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+
+  //remove item from cart
+  void removeFromCart(Coffee coffee) {
+    Provider.of<CoffeeShop>(context, listen: false).removeItemFromCart(coffee);
+  }
+
+  //pay button tapped
+  void payNow(){}
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoffeeShop>(builder:(context, value, child)=> SafeArea(
+    return Consumer<CoffeeShop>(builder: (context, value, child) => SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
             //heading
             Text(
-            "Your Cart",
-            style: TextStyle(fontSize: 20),
+              "Tu Carrito",
+              style: TextStyle(fontSize: 20),
             ),
 
             //List of cart items
-            Expanded(child: ListView.builder(itemBuilder: (context, index){
-              //get individual cart items
-              Coffee eachCoffee= value.userCart[index]; //min 16:24
-            },))
+            Expanded(child: ListView.builder(
+              itemCount: value.userCart.length,
+              itemBuilder: (context, index) {
+                //get individual cart items
+                Coffee eachCoffee = value.userCart[index];
+                
+                //return coffee tile
+                return CoffeeTile(
+                  coffee: eachCoffee, 
+                  onPressed: () => removeFromCart(eachCoffee), 
+                  icon: Icon(Icons.delete),
+                );
+              },
+            ),
+            ),
+            GestureDetector(
+              onTap: payNow,
+              child: Container(
+                padding: const EdgeInsets.all(25),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.brown,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Center(
+                  child: Text(
+                    "Pagar Ahora",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

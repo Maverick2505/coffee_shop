@@ -7,29 +7,29 @@ class CoffeeShop extends ChangeNotifier{
   final List<Coffee> _shop =[
     //black coffee
     Coffee(
-      name: "Long Black", 
-      price: "4.10", 
+      name: "Cafe Negro", 
+      price: "45 pesos", 
       imagePath: "lib/image/black.png"
       ),
 
     //latte
     Coffee(
       name: "Latte", 
-      price: "4.20", 
+      price: "50 pesos", 
       imagePath: "lib/image/latte.png"
       ),
 
     //espresso
     Coffee(
       name: "Espresso", 
-      price: "3.50", 
+      price: "55 pesos", 
       imagePath: "lib/image/expresso.png"
       ),
 
     //iced coffee
     Coffee(
-      name: "Iced Coffee", 
-      price: "4.40", 
+      name: "Cafesito Frio", 
+      price: "70 pesos", 
       imagePath: "lib/image/ice.png"
       ),
   ];
